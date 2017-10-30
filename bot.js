@@ -152,6 +152,34 @@ bot.on('message', message => {
     }
 });
 
+bot.on('message', function(message) {
+    if (message.content == "!clear") {
+        if (message.author.id !== '261560215344775168' && message.author.id !== '265179128200691713') return message.reply("You don`t have access to use this command");
+        if (message.member.hasPermission("MANAGE_MESSAGES")) {
+            message.channel.fetchMessages({})
+               .then(function(list){
+                    message.channel.bulkDelete(list);
+                message.channel.send({embed:{
+                title: "📛 Channel Clear 📛",
+                description: "🔧An Administrator cleared this channel🔧",
+                color: 0x17A589,
+                timestamp: new Date(),
+                footer: {
+                    text: "Bot made by AlexMaster©"
+                    }
+                }})    
+                }), function(err){message.channel.send("ERROR: ERROR CLEARING CHANNEL.")}                     
+        }
+    }
+
+});
+
+//--------------------------END NEW COMMANDS----------------------------
+bot.on('guildMemberAdd', member => {
+    member.addRole(member.guild.roles.find("name", "Member"));
+    member.send("Welcome on *Blaxed*!\n\nType !help on server to show all avaible commands!\n\nForum: https://blaxed.com/forum/\nStore: https://blaxed.com/forum/index.php?/store/\n\nDeveloper / Administrator:DMY2004\nSupport / Administrator:AlexMaster");
+});
+
 bot.on('guildMemberAdd', member => {
    member.send("Welcome on *Blaxed*!\n\nType !help on server to show all avaible commands!\n\nForum: https://blaxed.com/forum/\nStore: https://blaxed.com/forum/index.php?/store/\n\nDeveloper / Administrator:DMY2004\nSupport / Administrator:AlexMaster");
 });
