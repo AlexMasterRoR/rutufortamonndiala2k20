@@ -8,6 +8,7 @@ bot.on('ready', () => {
   console.log('Started!');
   bot.user.setGame('Type !help');
   console.log('SetGame Started!');
+  bot.user.setUsername('Blaxed Helper')
   console.log('.')
   console.log('..')
   console.log('...')
